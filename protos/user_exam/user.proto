@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package user;
+
+service UserService {
+  rpc CreateUser(CreateUserRequest) returns (UserApi);
+  rpc GetUserById(GetUserByIdRequest) returns (UserApi);
+  rpc GetAllUser(GetAllUserRequest) returns (GetAllUserResponse);
+  rpc UpdateUser(User) returns (UserApi);
+  rpc DeleteUser(GetUserByIdRequest) returns (DeleteUserResponse);
+  rpc CheckField(CheckUser) returns (CheckRes);
+  rpc GetUserByEmail(EmailRequest) returns (UserApi);
+  rpc GetUserByRefreshToken(UserToken) returns (UserApi);
+}
+
+message UserApi {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+  string password = 5;
+  string refresh_token = 6;
+  string created_at = 7;
+  string updated_at = 8;
+  string deleted_at = 9;
+  repeated Product products = 10;
+}
+
+message CreateUserRequest {
+  string FirstName = 1;
+  string LastName = 2;
+  string Email = 3;
+  string Password = 4;
+  string RefreshToken = 5;
+}
+
+message User {
+  string Id = 1;
+  string FirstName = 2;
+  string LastName = 3;
+  string Email = 4;
+  string Password = 5;
+  string Refresh_token = 6;
+}
+
+message Product {
+  string Id = 1;
+  string OwnerId = 2;
+  string Name = 3;
+  string Description = 4;
+  string Created_at = 5;
+  string Updated_at = 6;
+  string Deleted_at = 7;
+}
+
+message GetUserByIdRequest {
+  string UserId = 1;
+}
+
+message GetAllUserResponse{
+  repeated User users = 1;
+
+}
+
+message GetAllUserRequest{
+  int64 page = 1;
+  int64 limit = 2;
+}
+
+message DeleteUserResponse {
+  string message = 1;
+}
+
+message UserToken {
+  string refresh_token = 1;
+}
+
+message EmailRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message CheckUser {
+  string field = 1;
+  string value = 2;
+}
+
+message CheckRes {
+  bool exists = 1;
+}
+
+

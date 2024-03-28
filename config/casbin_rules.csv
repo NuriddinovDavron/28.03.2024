@@ -1,0 +1,37 @@
+p, unauthorized, /v1/swagger/*, GET
+p, unauthorized, /v1/swagger/index.html, GET
+p, unauthorized, /v1/swagger/index.html, POST
+p, unauthorized, /v1/login, GET
+p, unauthorized, /v1/register, POST
+p, unauthorized, /v1/verification, GET
+p, unauthorized, /v1/token, GET
+p, admin, /v1/rbac/list-role-policies, GET
+p, admin, /v1/rbac/roles, GET
+p, admin, /v1/rbac/add-user-role, POST
+p, user, /v1/users, GET
+p, user, /v1/users/:id, GET
+p, user, /v1/posts, GET
+p, user, /v1/posts/:id, GET
+p, user, /v1/comments, GET
+p, user, /v1/comments/:id, GET
+p, user, /v1/likes/post/:id, GET
+p, user, v1/casbin/showrole, GET
+p, user, /v1/likes/comment/:id, GET
+p, admin, /v1/users, POST
+p, admin, /v1/users/:id, PUT
+p, admin, /v1/users/:id, DELETE
+p, admin, /v1/posts, POST
+p, admin, /v1/posts/:id, PUT
+p, admin, /v1/posts/:id, DELETE
+p, admin, /v1/comments, POST
+p, admin, /v1/comments/:id, PUT
+p, admin, /v1/comments/:id, DELETE
+p, admin, /v1/likes/post/:id, POST
+p, admin, /v1/likes/comment/:id, GET
+p, admin, /v1/likes/post, POST
+p, admin, /v1/likes/comment, POST
+g, user, unauthorized, (GET)|(POST)|(PUT)|(DELETE)
+g, admin, user, (GET)|(POST)|(PUT)|(DELETE)
+g, 1, /v1/swagger/*
+g, admin, user
+g, string, string
